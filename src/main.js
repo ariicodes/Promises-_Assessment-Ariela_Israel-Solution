@@ -22,8 +22,10 @@ function getFortune(question) {
 // TODO: Create a full session by combining the welcome, getFortune, and goodbye functions
 // Hint: Use promise chaining to call the functions in the correct order and concatenate the results
 function fullSession(question) {
+	let welcomeMessage = '';
 	return welcome()
-		.then(welcomeMess => {
+		.then( message => {
+			welcomeMessage = message
 			if (!question) {
 				throw new Error('A question is required...');
 			}
@@ -32,7 +34,7 @@ function fullSession(question) {
 		.then(fortune => {
 			return goodbye().then(response => {
 				const sessionArr = [
-					welcomeMess,
+					welcomeMessage,
 					`Your question was: ${question}`,
 					`Your fortune is: ${fortune}`,
 					response,
